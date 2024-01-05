@@ -26,7 +26,7 @@ class SaleOrderLine(models.Model):
                         'message': _(
                             "This product is packaged by %s %s. You should sell %s %s." %(self.product_packaging_id.qty,
                             self.product_id.uom_id.name,
-                            newqty,
+                            round(newqty, 4),
                             self.product_uom.name)
                         ),
                     },
