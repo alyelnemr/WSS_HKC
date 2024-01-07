@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="res.groups" id="group_stock_readonly">
+        <field name="name">Stock ReadOnly</field>
+        <field name="category_id" ref="base.module_category_inventory_inventory"/>
+    </record>
+     <record id="stock.group_stock_user" model="res.groups">
+            <field name="implied_ids" eval="[(4, ref('group_stock_readonly'))]"/>
+        </record>
+</odoo>

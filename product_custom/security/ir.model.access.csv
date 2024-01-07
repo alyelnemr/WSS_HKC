@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_move_allow_show_product,stock.move.allow_show_product,stock.model_stock_move,product_custom.group_stock_readonly,1,0,0,0
+access_product_template_readonly,access.product.template.readonly,product.model_product_template,product_custom.group_stock_readonly,1,0,0,0
+access_product_product_readonly,access.product.product.readonly,product.model_product_product,product_custom.group_stock_readonly,1,0,0,0
