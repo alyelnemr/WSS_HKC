@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <record model="res.groups" id="group_sales_payments">
+        <field name="name">Sales Payments Collect</field>
+        <field name="category_id" ref="base.module_category_hidden" />    </record>
+</odoo>
