@@ -15,8 +15,6 @@ class SaleOrder(models.Model):
                 if payment.state == 'cancelled':
                     continue
                 amount = payment.amount #payment.with_context(date=payment.date).currency_id.compute(payment.amount, record.currency_id)
-                if payment.payment_type == 'inbound':
-                    amount = -amount
                 total_amount += amount
             record.payment_amount = total_amount
 
