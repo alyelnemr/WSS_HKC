@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale_order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                     <button name="action_payment_view" type="object" class="oe_stat_button" icon="fa-money" invisible="payment_amount ==0"
+                       groups="sales_payment.group_sales_payments">
+                            <field name="payment_amount" string="Payment" widget="statinfo"/>
+                        </button>
+                    <field name="payment_ids" invisible="1"/>
+                </xpath>
+                <xpath expr="//button[@id='create_invoice_percentage']" position="after">
+                   <button name="action_register_payment" id="account_invoice_payment_btn"
+                                type="object" class="oe_highlight"
+                                invisible="state == 'cancel'"
+                                context="{'dont_redirect_to_payments': True, 'display_account_trust': True}"
+                                string="Register Payment" data-hotkey="g"
+                                groups="sales_payment.group_sales_payments"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
