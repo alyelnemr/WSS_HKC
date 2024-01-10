@@ -3,11 +3,13 @@
 
     <record model="res.groups" id="group_sales_payments">
         <field name="name">Sales Payments Collect</field>
-        <field name="category_id" ref="base.module_category_hidden" />
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 
     <record model="res.groups" id="group_sale_order_confirm">
         <field name="name">Sales Order Confirmation</field>
-        <field name="category_id" ref="base.module_category_hidden" />
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
     </record>
 </odoo>
