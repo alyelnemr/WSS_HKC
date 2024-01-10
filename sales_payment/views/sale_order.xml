@@ -15,7 +15,10 @@
                         </button>
                     <field name="payment_ids" invisible="1"/>
                 </xpath>
-                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                <xpath expr="//button[@name='action_confirm'][1]" position="attributes">
+                    <attribute name="groups">sales_payment.group_sale_order_confirm</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_confirm'][2]" position="attributes">
                     <attribute name="groups">sales_payment.group_sale_order_confirm</attribute>
                 </xpath>
                 <xpath expr="//button[@id='create_invoice_percentage']" position="after">
