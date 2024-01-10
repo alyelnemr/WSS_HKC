@@ -13,7 +13,7 @@ class SalePaymentRegister(models.TransientModel):
 
     journal_id = fields.Many2one('account.journal', store=True, readonly=False,
                                  compute='_compute_journal_id',
-                                 domain="[('company_id', '=', company_id), ('type', 'in', ('bank', 'cash'))]")
+                                 domain="[('company_id', 'in', company_ids), ('type', 'in', ('bank', 'cash'))]")
     partial_reconcile = fields.Boolean(string='Partial Reconcile')
     amount = fields.Float(string='Amount')
     order_id = fields.Many2one('sale.order')

@@ -15,6 +15,9 @@
                         </button>
                     <field name="payment_ids" invisible="1"/>
                 </xpath>
+                <xpath expr="//button[@name='action_confirm']" position="attributes">
+                    <attribute name="groups">sales_payment.group_sale_order_confirm</attribute>
+                </xpath>
                 <xpath expr="//button[@id='create_invoice_percentage']" position="after">
                    <button name="action_register_payment" id="account_invoice_payment_btn"
                                 type="object" class="oe_highlight"

@@ -3,5 +3,11 @@
 
     <record model="res.groups" id="group_sales_payments">
         <field name="name">Sales Payments Collect</field>
-        <field name="category_id" ref="base.module_category_hidden" />    </record>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
+
+    <record model="res.groups" id="group_sale_order_confirm">
+        <field name="name">Sales Order Confirmation</field>
+        <field name="category_id" ref="base.module_category_hidden" />
+    </record>
 </odoo>
