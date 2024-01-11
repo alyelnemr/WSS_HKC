@@ -35,7 +35,7 @@ class SaleOrder(models.Model):
             'name': _('Register Payment'),
             'res_model': 'sale.payment.register',
             'view_mode': 'form',
-            '': [[self.env.ref('sales_payment.view_sale_payment_register_form').id, 'form']],
+            '': [[self.env.sudo().ref('sales_payment.view_sale_payment_register_form').id, 'form']],
             'context': {
                 'active_model': 'sale.order',
                 'active_ids': self.ids,
