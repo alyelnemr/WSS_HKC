@@ -20,8 +20,11 @@ class SaleOrder(models.Model):
 
     def action_payment_view(self):
         self.ensure_one()
-        action, = self.env.ref('account.action_account_payments').read()
+        action, = self.env.ref('account.action_account_payments').sudo().read()
         action['domain'] = [('id', 'in', self.payment_ids.ids)]
+        context = self.env.context.copy()
+        context.update({'create': False})
+        action['context'] = context
         return action
 
     def action_register_payment(self):
@@ -32,7 +35,7 @@ class SaleOrder(models.Model):
             'name': _('Register Payment'),
             'res_model': 'sale.payment.register',
             'view_mode': 'form',
-            '': [[self.env.ref('sales_payment.view_sale_payment_register_form').id, 'form']],
+            '': [[self.env.sudo().ref('sales_payment.view_sale_payment_register_form').id, 'form']],
             'context': {
                 'active_model': 'sale.order',
                 'active_ids': self.ids,
