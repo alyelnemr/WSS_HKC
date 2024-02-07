@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="approval_request_view_form_inherit" model="ir.ui.view">
+            <field name="name">approval.request.form</field>
+            <field name="model">approval.request</field>
+            <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+            <field name="arch" type="xml">
+                   <button name="action_confirm" position="after">
+                            <button name="action_create_ticket" string="Create Ticket" type="object" class="oe_highlight"
+                                    invisible="approval_type != 'create_ticket' or request_status != 'approved'" data-hotkey="w"/>
+                        </button>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_open_ticket_view" type="object" icon="fa-life-ring" class="oe_stat_button">
+                            <field name="ticket_count" string="Tickets" widget="statinfo"/>
+                        </button>
+                    <field name="ticket_ids" invisible="1"/>
+                </xpath>
+                <field name="category_id" position="after">
+                    <field name="ticket_type_id" options="{'no_create': 1}" invisible="approval_type != 'create_ticket' or request_status != 'approved'"
+                    required="approval_type == 'create_ticket' and request_status == 'approved'"/>
+                    <field name="tag_ids" widget="many2many_tags" options="{'no_create': 1}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="helpdesk_ticket_form_inherit" model="ir.ui.view">
+            <field name="name">helpdesk.ticket.form.inherit</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+            <field name="arch" type="xml">
+                  <xpath expr="//page[@name='extra_info']" position="inside">
+                    <group><field name="approval_request_id" readonly="1" invisible="approval_request_id == False"/></group>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>
