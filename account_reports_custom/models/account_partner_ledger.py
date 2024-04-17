@@ -36,7 +36,7 @@ class PartnerLedgerCustomHandler(models.AbstractModel):
                     initial_balance = self.with_context(initial_balance=True)._get_initial_balance_values([partner.id], options)
                     if 'balance' in initial_balance[partner.id][column_group_key]:
                         partner_values[column_group_key]['initial'] = initial_balance[partner.id][column_group_key]['balance']
-                        partner_values[column_group_key]['balance'] = partner_sum.get('balance', 0.0) - initial_balance[partner.id][column_group_key]['balance']
+                        partner_values[column_group_key]['debit'] = partner_sum.get('debit', 0.0) - initial_balance[partner.id][column_group_key]['balance']
 
                 totals_by_column_group[column_group_key]['initial'] += partner_values[column_group_key]['initial']
                 totals_by_column_group[column_group_key]['debit'] += partner_values[column_group_key]['debit']
