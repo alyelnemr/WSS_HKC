@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">view.sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+                <xpath expr="//button[@id='create_invoice_percentage']" position="after">
+                <button name="action_approve" type="object" invisible="state != 'to_approve'" string="Approve Order"
+                        class="oe_highlight" groups="sale_credit_limit_approval.group_approve_sales_credit_limit" data-hotkey="z"/>
+
+            </xpath>
+            <xpath expr="//page/field[@name='order_line']" position="attributes">
+                <attribute name="readonly">state in ('sale', 'cancel', 'to_approve')</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
