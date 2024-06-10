@@ -18,9 +18,10 @@ class SaleOrder(models.Model):
         before confirming the order. The order is set to credit limit approval  if existing
         due is greater than  limit of the partner.
         '''
+
         if self.partner_credit_warning != '':
             if self._approval_allowed():
-                self.action_approve()
+                return super(SaleOrder, self).action_confirm()
             else:
                 self.write({'state': 'to_approve'})
                 return {
@@ -29,8 +30,8 @@ class SaleOrder(models.Model):
                         'message': self.partner_credit_warning,
                     }
                 }
-        res = super(SaleOrder, self).action_confirm()
-        return res
+        else: return super(SaleOrder, self).action_confirm()
+        return True
 
     def _approval_allowed(self):
         """Returns whether the order qualifies to be approved by the current user"""
@@ -41,6 +42,24 @@ class SaleOrder(models.Model):
 
     def action_approve(self, force=False):
         self = self.filtered(lambda order: order._approval_allowed())
-        self.write({'state': 'sale'})
-        return {}
+        self.action_confirm()
+
+    def _can_be_confirmed(self):
+        self.ensure_one()
+        return self.state in {'draft', 'sent', 'to_approve'}
+
+    @api.depends('company_id', 'partner_id', 'amount_total')
+    def _compute_partner_credit_warning(self):
+        for order in self:
+            order.with_company(order.company_id)
+            order.partner_credit_warning = ''
+            show_warning = order.state in ('draft', 'sent', 'to_approve') and \
+                           order.company_id.account_use_credit_limit
+            if show_warning:
+                order.partner_credit_warning = self.env['account.move']._build_credit_warning_message(
+                    order,
+                    current_amount=(order.amount_total / order.currency_rate),
+                )
+
+
 
