@@ -1,0 +1,48 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sale_credit_limit_approval
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-11 05:26+0000\n"
+"PO-Revision-Date: 2024-06-11 05:26+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sale_credit_limit_approval
+#: model_terms:ir.ui.view,arch_db:sale_credit_limit_approval.view_sale_order_form_inherit
+msgid "Approve Order"
+msgstr "الموافقة على الطلب"
+
+#. module: sale_credit_limit_approval
+#: model:res.groups,name:sale_credit_limit_approval.group_approve_sales_credit_limit
+msgid "Approve Sales Customer Credit Limit"
+msgstr ""
+
+#. module: sale_credit_limit_approval
+#: model:ir.model,name:sale_credit_limit_approval.model_sale_order
+msgid "Sales Order"
+msgstr "أمر البيع"
+
+#. module: sale_credit_limit_approval
+#: model:ir.model.fields,field_description:sale_credit_limit_approval.field_sale_order__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: sale_credit_limit_approval
+#: model:ir.model.fields.selection,name:sale_credit_limit_approval.selection__sale_order__state__to_approve
+msgid "To Approve"
+msgstr "بانتظار الموافقة"
+
+#. module: sale_credit_limit_approval
+#. odoo-python
+#: code:addons/sale_credit_limit_approval/models/sale_order.py:0
+#, python-format
+msgid "Warning for Customer credit limit exceeded"
+msgstr ""
