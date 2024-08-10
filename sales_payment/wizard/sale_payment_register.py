@@ -39,7 +39,7 @@ class SalePaymentRegister(models.TransientModel):
             'ref': self.order_id.name,
             'partner_type': 'customer',
         }
-        payment = self.env['account.payment'].create(vals)
+        payment = self.env['account.payment'].sudo().create(vals)
         if payment:
             self.order_id.write({'payment_ids': [(4, payment.id)]})
             payment.action_post()

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record  model="ir.ui.view" id="view_move_form_security">
+        <field name="name">account.move.security</field>
+         <field name="model">account.move</field>
+         <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+              <xpath expr="//button[@name='action_register_payment']" position="attributes">
+                  <attribute name="groups">account.group_account_invoice,accounting_security.group_bank_accountant,accounting_security.group_account_cashier</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
