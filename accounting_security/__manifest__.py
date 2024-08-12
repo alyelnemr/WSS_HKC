@@ -9,7 +9,8 @@
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/menuitems.xml',
-        'views/view.xml'
+        'views/account_move_view.xml',
+        'views/sale_order_view.xml'
     ],
     'installable': True,
     'application': True
