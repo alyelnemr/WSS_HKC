@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record  model="ir.ui.view" id="view_sale_order_form_security">
+        <field name="name">sale.order.security</field>
+         <field name="model">sale.order</field>
+         <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+              <xpath expr="//button[@id='create_invoice']" position="attributes">
+                  <attribute name="groups">sales_team.group_sale_salesman</attribute>
+            </xpath>
+            <xpath expr="//button[@id='create_invoice_percentage']" position="attributes">
+                  <attribute name="groups">sales_team.group_sale_salesman</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
