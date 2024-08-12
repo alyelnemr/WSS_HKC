@@ -17,6 +17,9 @@ access_account_edi_format_cashier,account.edi.format.cashier,l10n_sa_edi.model_a
 access_account_edi_format_bank_accountant,account.edi.format.bank_accountant,l10n_sa_edi.model_account_edi_format,accounting_security.group_bank_accountant,1,0,0,0
 access_sale_order_coupon_points_cashier,sale.order.coupon.points.cashier,sale_loyalty.model_sale_order_coupon_points,accounting_security.group_account_cashier,1,0,0,0
 access_sale_order_coupon_points_bank_accountant,sale.order.coupon.points.bank_accountant,sale_loyalty.model_sale_order_coupon_points,accounting_security.group_bank_accountant,1,0,0,0
+access_loyalty_card_cashier,loyalty.card.cashier,sale_loyalty.model_loyalty_card,accounting_security.group_account_cashier,1,0,0,0
+access_loyalty_card_bank_accountant,loyalty.card.bank_accountant,sale_loyalty.model_loyalty_card,accounting_security.group_bank_accountant,1,0,0,0
+
 
 
 
