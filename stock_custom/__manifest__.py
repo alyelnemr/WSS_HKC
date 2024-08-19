@@ -16,5 +16,5 @@
     'installable': True,
     'auto_install': True,
 
-    'license': 'OPL-3',
+    'license': 'OPL-1',
 }
