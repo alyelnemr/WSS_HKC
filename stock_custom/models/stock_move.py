@@ -8,15 +8,24 @@ from odoo import api, fields, models, _
 class StockMove(models.Model):
     _inherit = "stock.move"
 
+    def _account_entry_move(self, qty, description, svl_id, cost):
+        res = super()._account_entry_move(qty, description, svl_id, cost)
+        if len(res) > 0:
+            for rec in res:
+                rec['invoice_origin'] = self.picking_id.origin
+                # for line in rec['line_ids']:
+                #     line[2]['invoice_origin'] = self.picking_id.origin
+        return res
+
 
 
     def _get_in_svl_vals(self, forced_quantity):
         svl_vals_list = []
         for move in self:
-            move = move.with_company(move.company_id)
+            company_id = move.company_id
             if move.rule_id:
-                origin_company = self.env['stock.picking'].search([('name', '=', self.origin)]).company_id
-                move.with_company(origin_company)
+                company_id = self.env['stock.picking'].search([('name', '=', self.origin)]).company_id
+            move = move.with_company(company_id)
             valued_move_lines = move._get_in_move_lines()
             valued_quantity = 0
             for valued_move_line in valued_move_lines:
