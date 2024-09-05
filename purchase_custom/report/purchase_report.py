@@ -15,4 +15,4 @@ class PurchaseReport(models.Model):
 
 
     def _group_by(self):
-        return super(PurchaseReport, self)._group_by() + ", date_planned"
+        return super(PurchaseReport, self)._group_by() + ", po.date_planned"
