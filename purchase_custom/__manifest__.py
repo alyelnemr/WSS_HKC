@@ -8,7 +8,7 @@
     'summary': 'Purchase Orders, Purchase Reports',
     'depends': ['purchase'],
     'data': [
-      
+      "report/purchase_report_views.xml",
     ],
     
     'installable': True,
