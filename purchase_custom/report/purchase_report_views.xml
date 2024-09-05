@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="purchase_report_view_search" model="ir.ui.view">
+        <field name="name">purchase.report.search.stock</field>
+        <field name="model">purchase.report</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='group_date_approve_month']" position="after">
+                    <filter string="Expected Arrival" name="group_date_planned_month" context="{'group_by': 'date_planned:month'}"/>
+            </xpath>
+             <xpath expr="//field[@name='date_approve']" position="after">
+                                <field name="date_planned"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
