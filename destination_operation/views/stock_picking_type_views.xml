@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="stock.view_picking_type_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='code']" position="after">
-                <field name="allow_destination_picking"/>
+                <field name="allow_destination_picking" string="إنشاء طلب الوجهة" />
             </xpath>
         </field>
     </record>
@@ -20,7 +20,7 @@
             <xpath expr="//field[@name='location_dest_id']" position="after">
                 <field name="allow_destination_picking" invisible="1"/>
                 <field name="linked_picking_id" invisible="1"/>
-                <field name="destination_picking_type_id" string="إنشاء طلب الوجهة" readonly="state != 'draft' and id" invisible="not allow_destination_picking" required="allow_destination_picking"/>
+                <field name="destination_picking_type_id" readonly="state != 'draft' and id" invisible="not allow_destination_picking" required="allow_destination_picking"/>
             </xpath>
         </field>
     </record>
