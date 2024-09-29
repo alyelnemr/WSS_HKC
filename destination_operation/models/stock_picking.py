@@ -23,18 +23,16 @@ class StockPicking(models.Model):
             # Create a new picking with the destination picking type and set the product cost from the original picking
             new_picking = self.env['stock.picking'].with_company(self.destination_picking_type_id.company_id).create({
                 'picking_type_id': self.destination_picking_type_id.id,
-                'move_ids': [(0, 0, {
-                    'product_id': move.product_id.id,
-                    'name': move.product_id.name,
-                    'product_uom_qty': move.product_uom_qty,
-                    'product_uom': move.product_uom.id,
+                'move_ids': [(0, 0, move.copy_data({
                     'location_id': move.location_dest_id.id,
                     'location_dest_id': move.location_id.id,
                     'company_id': self.destination_picking_type_id.company_id.id,
-                    'price_unit': move.reference_cost,  # Copying the product cost (price_unit) from the previous picking
-                }) for move in self.move_ids],
+                    'price_unit': move.reference_cost,
+                    # Copying the product cost (price_unit) from the previous picking
+                })[0]) for move in self.move_ids],  # Create a new copy of the move
                 'linked_picking_id': self.id,  # Link the newly created picking to the original picking
                 'partner_id': self.partner_id.id,
             })
+
             new_picking.action_confirm()
         return res
