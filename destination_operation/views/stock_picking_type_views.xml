@@ -19,7 +19,7 @@
             <!-- Add the destination_picking_type_id field below the location_dest_id field -->
             <xpath expr="//field[@name='location_dest_id']" position="after">
                 <field name="allow_destination_picking" invisible="1"/>
-                <field name="linked_picking_id" invisible="0"/>
+                <field name="linked_picking_id" invisible="1"/>
                 <field name="destination_picking_type_id" string="إنشاء طلب الوجهة" readonly="state != 'draft' and id" invisible="not allow_destination_picking" required="allow_destination_picking"/>
             </xpath>
         </field>
