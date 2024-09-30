@@ -51,8 +51,8 @@ class StockPicking(models.Model):
                     'product_uom_qty': move.product_uom_qty,
                     'quantity': move.quantity,
                     'product_uom': move.product_uom.id,
-                    'location_id': self.destination_picking_type_id.default_location_dest_id.id,# move.location_dest_id.id,
-                    'location_dest_id': self.destination_picking_type_id.default_location_src_id.id, #move.location_id.id,
+                    'location_id': self.destination_picking_type_id.default_location_src_id.id,# move.location_dest_id.id,
+                    'location_dest_id': self.destination_picking_type_id.default_location_dest_id.id, #move.location_id.id,
                     'product_packaging_id': move.product_packaging_id.id,
                     'company_id': self.destination_picking_type_id.company_id.id,
                     'price_unit': abs(move.reference_cost),  # Copying the product cost (price_unit) from the previous picking
