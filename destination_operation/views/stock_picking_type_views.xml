@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="stock.view_picking_type_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='code']" position="after">
-                <field name="allow_destination_picking" string="إنشاء طلب الوجهة" />
+                <field name="allow_destination_picking" string="إنشاء طلب الوجهة"/>
             </xpath>
         </field>
     </record>
@@ -16,11 +16,20 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <!-- Add the destination_picking_type_id field below the location_dest_id field -->
+            <div name="button_box" position="inside">
+                <button name="action_view_child_pickings" string="تحويلات داخلية" type="object"
+                        class="oe_stat_button" icon="oi-arrows-v"
+                        invisible="not child_picking_ids"/>
+                <button name="action_view_linked_picking" string="تحويلات داخلية" type="object"
+                        class="oe_stat_button" icon="oi-arrows-v"
+                        invisible="not linked_picking_id"/>
+            </div>
             <xpath expr="//field[@name='location_dest_id']" position="after">
+                <field name="child_picking_ids" invisible="1"/>
                 <field name="allow_destination_picking" invisible="1"/>
                 <field name="linked_picking_id" invisible="1"/>
-                <field name="destination_picking_type_id" readonly="state != 'draft' and id" invisible="not allow_destination_picking" required="allow_destination_picking"/>
+                <field name="destination_picking_type_id" readonly="state != 'draft' and id"
+                       invisible="not allow_destination_picking" required="allow_destination_picking"/>
             </xpath>
         </field>
     </record>

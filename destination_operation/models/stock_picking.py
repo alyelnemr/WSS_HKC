@@ -15,6 +15,28 @@ class StockPicking(models.Model):
     destination_picking_type_id = fields.Many2one('stock.picking.type', string="Destination Operation Type")
     linked_picking_id = fields.Many2one('stock.picking', string="Master Picking",
                                         help="The original picking linked to this destination picking")
+    child_picking_ids = fields.One2many('stock.picking', 'linked_picking_id', string="Child Pickings")
+
+    def action_view_linked_picking(self):
+        self.ensure_one()
+        action = self.env.ref('stock.action_picking_tree_all').sudo().read()[0]
+        action['domain'] = [('id', '=', self.linked_picking_id.id)]
+        action['context'] = dict(self.env.context, create=False)
+        return action
+
+    def action_view_child_pickings(self):
+        """Action to view the child pickings"""
+        self.ensure_one()
+        action = self.env.ref('stock.action_picking_tree_all').sudo().read()[0]
+        action['domain'] = [('id', 'in', self.child_picking_ids.ids)]
+        action['context'] = dict(self.env.context, create=False)
+        return action
+
+    @api.depends('state')
+    def _compute_hide_picking_type(self):
+        for picking in self:
+            # picking.hide_picking_type = picking.state != "draft" and picking.ids and 'default_picking_type_id' in picking.env.context
+            picking.hide_picking_type = False
 
     def button_validate(self):
         # Override the button_validate method to create a destination picking upon validation
@@ -36,6 +58,7 @@ class StockPicking(models.Model):
                 }) for move in self.move_ids],
                 'linked_picking_id': self.id,  # Link the newly created picking to the original picking
                 'partner_id': self.partner_id.id,
+                'origin': self.name,  # Copying the original picking name to the new picking
             })
             new_picking.action_confirm()
         return res
