@@ -49,6 +49,7 @@ class StockPicking(models.Model):
                     'product_id': move.product_id.id,
                     'name': move.product_id.name,
                     'product_uom_qty': move.product_uom_qty,
+                    'quantity': move.quantity,
                     'product_uom': move.product_uom.id,
                     'location_id': self.destination_picking_type_id.default_location_dest_id.id,# move.location_dest_id.id,
                     'location_dest_id': self.destination_picking_type_id.default_location_src_id.id, #move.location_id.id,

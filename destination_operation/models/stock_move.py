@@ -48,7 +48,7 @@ class StockMove(models.Model):
                 unit_cost = abs(move._get_price_unit())  # May be negative (i.e. decrease an out move).
             svl_vals = move.product_id._prepare_in_svl_vals(forced_quantity or valued_quantity, unit_cost)
             if move.picking_id.allow_destination_picking:
-                move.reference_cost = unit_cost
+                move.reference_cost = abs(unit_cost)
             svl_vals.update(move._prepare_common_svl_vals())
             if forced_quantity:
                 svl_vals['description'] = 'Correction of %s (modification of past move)' % (
