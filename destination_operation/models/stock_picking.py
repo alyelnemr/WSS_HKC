@@ -54,7 +54,7 @@ class StockPicking(models.Model):
                     'location_dest_id': self.destination_picking_type_id.default_location_src_id.id, #move.location_id.id,
                     'product_packaging_id': move.product_packaging_id.id,
                     'company_id': self.destination_picking_type_id.company_id.id,
-                    'price_unit': move.reference_cost,  # Copying the product cost (price_unit) from the previous picking
+                    'price_unit': abs(move.reference_cost),  # Copying the product cost (price_unit) from the previous picking
                 }) for move in self.move_ids],
                 'linked_picking_id': self.id,  # Link the newly created picking to the original picking
                 'partner_id': self.partner_id.id,
